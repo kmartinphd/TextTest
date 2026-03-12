@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class StringUtils {
 
@@ -13,16 +13,9 @@ public class StringUtils {
         if (input == null) {
             return null;
         }
-        ArrayList<Character> chars = new ArrayList<>();
-        for (char c : input.toCharArray()) {
-            chars.add(c);
-        }
-        Collections.reverse(chars);
-        StringBuilder result = new StringBuilder();
-        for (char c : chars) {
-            result.append(c);
-        }
-        return result.toString();
+        return IntStream.rangeClosed(1, input.length())
+                .mapToObj(i -> String.valueOf(input.charAt(input.length() - i)))
+                .collect(Collectors.joining());
     }
 
     public static void main(String[] args) {
