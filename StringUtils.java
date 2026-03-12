@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class StringUtils {
 
     /**
@@ -10,16 +13,16 @@ public class StringUtils {
         if (input == null) {
             return null;
         }
-        char[] chars = input.toCharArray();
-        int left = 0, right = chars.length - 1;
-        while (left < right) {
-            char temp = chars[left];
-            chars[left] = chars[right];
-            chars[right] = temp;
-            left++;
-            right--;
+        ArrayList<Character> chars = new ArrayList<>();
+        for (char c : input.toCharArray()) {
+            chars.add(c);
         }
-        return new String(chars);
+        Collections.reverse(chars);
+        StringBuilder result = new StringBuilder();
+        for (char c : chars) {
+            result.append(c);
+        }
+        return result.toString();
     }
 
     public static void main(String[] args) {
