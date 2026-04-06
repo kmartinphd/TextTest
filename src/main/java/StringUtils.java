@@ -1,17 +1,14 @@
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
 /**
  * Utility class providing helper methods for String manipulation.
  */
 public class StringUtils {
 
     /**
-     * Reverses the letters in a given string using a stream pipeline.
+     * Reverses the letters in a given string using Apache Commons Lang.
      *
-     * <p>Iterates character indices from the end to the start of the string,
-     * maps each index to its corresponding character, and joins them into
-     * a new reversed string.</p>
+     * <p>Delegates to {@code org.apache.commons.lang3.StringUtils.reverse()},
+     * which handles {@code null} by returning {@code null} and empty strings
+     * by returning an empty string.</p>
      *
      * <p>Examples:</p>
      * <pre>
@@ -25,12 +22,7 @@ public class StringUtils {
      * @return the reversed string, or {@code null} if {@code input} is {@code null}
      */
     public static String reverseString(String input) {
-        if (input == null) {
-            return null;
-        }
-        return IntStream.rangeClosed(1, input.length())
-                .mapToObj(i -> String.valueOf(input.charAt(input.length() - i)))
-                .collect(Collectors.joining());
+        return org.apache.commons.lang3.StringUtils.reverse(input);
     }
 
     public static void main(String[] args) {
